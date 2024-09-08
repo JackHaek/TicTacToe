@@ -125,7 +125,7 @@ class TicTacToeTrainer:
         print("The placement indices are numbered from 0 to 8 and read left to right")
 
         self.board = TicTacToe()
-        show_results = True
+        show_results = True if player_letter == "X" else False
         game_is_over = False
         game_condition = None
         while not game_is_over:
