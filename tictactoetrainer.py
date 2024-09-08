@@ -1,6 +1,8 @@
 from __future__ import annotations
 import random
+from typing import Final
 import numpy as np
+from numpy import ndarray
 from tictactoe import TicTacToe
 
 
@@ -51,11 +53,11 @@ class TicTacToeTrainer:
         pass
 
     def _algorithm_determine_next_move(self) -> int:
-        state = self.board.get_current_game_state()
+        state: Final[ndarray] = self.board.get_current_game_state()
 
         # If there is 2 values of the same in a row, no matter what team it is, the algorithm
         # should go there
-        for idx, row in enumerate(self.board.get_current_game_state()):
+        for idx, row in enumerate(state):
             vals, count = np.unique(row, return_counts=True)
             zipped = dict(zip(vals, count))
             #If there is an empty space and 2 of the same value
@@ -65,7 +67,7 @@ class TicTacToeTrainer:
         # If there is 2 values of the same in a column, no matter what team it is, the algorithm
         # should go there
         for col in range(3):
-            column = self.board.get_current_game_state()[:, col]
+            column = state[:, col]
             vals, count = np.unique(column, return_counts=True)
             zipped = dict(zip(vals, count))
             if 0 in column and 2 in count and zipped[0] != 2:
