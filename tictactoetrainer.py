@@ -4,6 +4,7 @@ from typing import Final
 import numpy as np
 from numpy import ndarray
 from tictactoe import TicTacToe
+import os
 
 
 def _initialize_weights():
@@ -11,6 +12,10 @@ def _initialize_weights():
     rng = np.random.default_rng()
     s = rng.normal(mu, sigma, 9)
     return s
+
+
+def _clear_terminal():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 class TicTacToeTrainer:
@@ -31,6 +36,7 @@ class TicTacToeTrainer:
         return rtn_val
 
     def _check_game_condition(self, gc, print_non_winner = True) -> bool:
+        _clear_terminal()
         if gc == 0:
             print("The Game was a draw!")
             print(self.board)
